@@ -47,6 +47,19 @@ body {
   to{ transform:translateY(110vh) rotate(360deg); }
 }
 
+  /* 🌹 CONFETTI ROSES */
+.heart{
+  position:fixed;
+  top:-20px;
+  font-size:18px;
+  animation:fall linear infinite;
+  opacity:0.9;
+  z-index:1;
+}
+@keyframes fall{
+  to{ transform:translateY(110vh) rotate(360deg); }
+}
+
 /* ❤️ FIXED MARQUEE */
 .marquee-wrapper{
   position:fixed;
@@ -162,25 +175,25 @@ for(let i=0;i<55;i++){
 
   <script>
 for(let i=0;i<55;i++){
-  let rose=document.createElement("div");
-  rose.innerHTML="❤️";
-  rose.className="rose";
-  rose.style.left=Math.random()*100+"vw";
-  rose.style.animationDuration=(5+Math.random()*6)+"s";
-  rose.style.fontSize=(13+Math.random()*20)+"px";
-  document.body.appendChild(rose);
+  let heart=document.createElement("div");
+  heart.innerHTML="❤️";
+  heart.className="rose";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(5+Math.random()*6)+"s";
+  heart.style.fontSize=(13+Math.random()*20)+"px";
+  document.body.appendChild(heart);
 }
 </script>
 
 <div class="container">
 
-  <div class="slide active" data-text="Bad and hectic days come and go \n but we stick together">
+  <div class="slide active" data-text="Bad and hectic days come and go .But us ? Westick together">
     <div class="image"><img src="https://drive.google.com/thumbnail?id=1PcrRWceq2niY8g3V-jDojf1j7rj-xZm0"></div>
     <h1>Hi Sana ❤️</h1>
     <div class="typewriter"></div>
   </div>
 
-  <div class="slide" data-text="Your lap is the perfect pillow">
+  <div class="slide" data-text="Your lap is the comfort i crave for ">
     <div class="image"><img src="https://drive.google.com/thumbnail?id=1eEM0p9rfE4KAKyvFT9wsuV1GawzNZjhf"></div>
     <div class="typewriter"></div>
   </div>
@@ -195,14 +208,14 @@ for(let i=0;i<55;i++){
     <div class="typewriter"></div>
   </div>
 
-  <div class="slide" data-text="You are meant to conquer the world .">
+  <div class="slide" data-text="You are meant to conquer the world . You are there to get whatever your heart craves ">
     <div class="image"><img src="https://drive.google.com/thumbnail?id=1ThgMbhZPgeDSbx2-OfS9sKTJW-ubc0H-"></div>
     <div class="typewriter"></div>
   </div>
 
   
 
-  <div class="slide" data-text="I LOVE YOU ❤️Today, tomorrow, and always  my heart is yours. — Aastha 🌹">
+  <div class="slide" data-text="I LOVE YOU ❤️. In the ride of life , Today, tomorrow, and always  my heart is yours. — Aastha 🌹">
     <div class="image"><img src="https://drive.google.com/thumbnail?id=1IMcar8MPJ6pQJcIAQ9ye9RnnxAol_-Ji"></div>
       <h1> Take care mayaluu ❤️</h1>
     <div class="typewriter"></div>
@@ -259,6 +272,7 @@ function toggleMusic(){
 
 </body>
 </html>
+
 
 
 
