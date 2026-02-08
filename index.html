@@ -7,210 +7,244 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
-  body {
-    margin: 0;
-    font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow:hidden;
+}
 
-  .container {
-    background: white;
-    width: 94%;
-    max-width: 480px;
-    height: 620px;
-    border-radius: 30px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.3);
-    padding: 25px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+/* 🎶 MUSIC BUTTON */
+#musicBtn{
+  position:fixed;
+  bottom:95px;
+  right:18px;
+  background:#ff4d6d;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:30px;
+  font-size:15px;
+  cursor:pointer;
+  z-index:10;
+  box-shadow:0 8px 20px rgba(0,0,0,0.25);
+}
 
-  .slide {
-    display: none;
-    animation: fade 1s ease;
-  }
+/* 🌹 CONFETTI ROSES */
+.rose{
+  position:fixed;
+  top:-20px;
+  font-size:18px;
+  animation:fall linear infinite;
+  opacity:0.9;
+  z-index:1;
+}
+@keyframes fall{
+  to{ transform:translateY(110vh) rotate(360deg); }
+}
 
-  .slide.active {
-    display: block;
-  }
+/* ❤️ FIXED MARQUEE */
+.marquee-wrapper{
+  position:fixed;
+  top:15px;
+  width:100%;
+  z-index:5;
+  pointer-events:none;
+}
+marquee{
+  font-size:28px;
+  font-weight:bold;
+  color:#e63946;
+  text-shadow:0 0 8px rgba(230,57,70,0.5);
+}
 
-  .image {
-    width: 100%;
-    height: 260px;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
+.container {
+  background: white;
+  width: 94%;
+  max-width: 480px;
+  height: 620px;
+  border-radius: 30px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+  padding: 25px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index:2;
+}
 
-  .image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+.slide {
+  display: none;
+  animation: fade 1s ease;
+}
+.slide.active { display: block; }
 
-  h1 {
-    color: #e63946;
-    font-size: 28px;
-    margin-bottom: 12px;
-  }
+.image {
+  width: 100%;
+  height: 260px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
-  p {
-    font-size: 20px;
-    color: #444;
-    line-height: 1.8;
-  }
+h1 {
+  color: #e63946;
+  font-size: 28px;
+  margin-bottom: 12px;
+}
 
-  button {
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #e63946;
-    color: white;
-    border: none;
-    padding: 14px 34px;
-    border-radius: 30px;
-    font-size: 17px;
-    cursor: pointer;
-  }
+/* ✨ TYPEWRITER TEXT */
+.typewriter{
+  font-size:20px;
+  color:#444;
+  line-height:1.8;
+  white-space:pre-line;
+  min-height:120px;
+}
 
-  @keyframes fade {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+button.next{
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e63946;
+  color: white;
+  border: none;
+  padding: 14px 34px;
+  border-radius: 30px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
 
 <body>
 
+<!-- ❤️ MARQUEE -->
+<div class="marquee-wrapper">
+<marquee scrollamount="7">
+❤️ ❤️ ❤️ I LOVE YOU ❤️ I LOVE YOU ❤️ I LOVE YOU ❤️ I LOVE YOU ❤️ I LOVE YOU ❤️❤️ I LOVE YOU ❤️❤️ I LOVE YOU ❤️❤️ I LOVE YOU ❤️❤️ I LOVE YOU ❤️❤️ I LOVE YOU ❤️❤️ I LOVE YOU ❤️
+</marquee>
+</div>
+
 <!-- 🎶 MUSIC -->
-<audio autoplay loop>
-  <source src="https://drive.google.com/uc?export=download&id=1Hf5PIIl6-FDAEIuZx4daBMU2rqwa8Bv1">
+<audio id="bgMusic" loop preload="auto">
+  <source src="httpswww.youtube.comwatchv=lw5HokUbJtc (3).mp3" type="audio/mpeg">
 </audio>
+
+<button id="musicBtn" onclick="toggleMusic()">🎶 Play Music</button>
+
+<!-- 🌹 ROSES -->
+<script>
+for(let i=0;i<55;i++){
+  let rose=document.createElement("div");
+  rose.innerHTML="🌹";
+  rose.className="rose";
+  rose.style.left=Math.random()*100+"vw";
+  rose.style.animationDuration=(5+Math.random()*6)+"s";
+  rose.style.fontSize=(14+Math.random()*20)+"px";
+  document.body.appendChild(rose);
+}
+</script>
 
 <div class="container">
 
-  <!-- SLIDE 1 -->
-  <div class="slide active">
+  <div class="slide active" data-text="This is not just a card…\nIt’s every feeling I’ve ever had for you,\nwrapped into moments you can click through.">
     <div class="image"><img src="https://drive.google.com/thumbnail?id=1PcrRWceq2niY8g3V-jDojf1j7rj-xZm0"></div>
     <h1>Hi My Love ❤️</h1>
-    <p>
-      This is not just a card…<br>
-      It’s every feeling I’ve ever had for you,<br>
-      wrapped into moments you can click through.
-    </p>
+    <div class="typewriter"></div>
   </div>
 
-  <!-- SLIDE 2 -->
-  <div class="slide">
+  <div class="slide" data-text="Somewhere between our first conversation\nand this very moment,\nyou quietly became my favourite part of life.">
     <div class="image"><img src="https://drive.google.com/thumbnail?id=1eEM0p9rfE4KAKyvFT9wsuV1GawzNZjhf"></div>
-    <p>
-      Somewhere between our first conversation<br>
-      and this very moment,<br>
-      you quietly became my favourite part of life.
-    </p>
+    <div class="typewriter"></div>
   </div>
 
-  <!-- SLIDE 3 -->
-  <div class="slide">
+  <div class="slide" data-text="Loving you feels effortless,\nlike breathing, like smiling,\nlike knowing exactly where I belong.">
     <div class="image"><img src="https://drive.google.com/thumbnail?id=1mtY9-mTb3Cj2iEJ5i5ZN5Rg8Mz_xo08r"></div>
-    <p>
-      Loving you feels effortless,<br>
-      like breathing, like smiling,<br>
-      like knowing exactly where I belong.
-    </p>
+    <div class="typewriter"></div>
   </div>
 
-  <!-- SLIDE 4 -->
-  <div class="slide">
+  <div class="slide" data-text="Even on days when the world feels heavy,\nthe thought of you makes everything lighter.">
     <div class="image"><img src="https://drive.google.com/thumbnail?id=1goy8SI8iMnKN36uwF7OMFzsM6IzUWB8c"></div>
-    <p>
-      Even on days when the world feels heavy,<br>
-      the thought of you makes everything lighter.
-    </p>
+    <div class="typewriter"></div>
   </div>
 
-  <!-- SLIDE 5 -->
-  <div class="slide">
+  <div class="slide" data-text="Distance may exist between us,\nbut my heart has never learned\nhow to be anywhere but with you.">
     <div class="image"><img src="https://drive.google.com/thumbnail?id=1ThgMbhZPgeDSbx2-OfS9sKTJW-ubc0H-"></div>
-    <p>
-      Distance may exist between us,<br>
-      but my heart has never learned<br>
-      how to be anywhere but with you.
-    </p>
+    <div class="typewriter"></div>
   </div>
 
-  <!-- SLIDE 6 -->
-  <div class="slide">
-    <div class="image"><img src="https://drive.google.com/thumbnail?id=1CpBq9xOJXvkbOmlXii7YNzBoJ1QifWEq"></div>
-    <p>
-      You are my comfort on bad days,<br>
-      my laughter on good ones,<br>
-      and my peace in between.
-    </p>
-  </div>
-
-  <!-- SLIDE 7 -->
-  <div class="slide">
-    <div class="image"><img src="https://drive.google.com/thumbnail?id=1A0Taeqlp85pvu8hJOcrt9lTqdBS_BEFZ"></div>
-    <p>
-      “तिमी जहाँ भए पनि,<br>
-      मेरो माया सधैं तिमीसँगै छ।” 🇳🇵
-    </p>
-  </div>
-
-  <!-- SLIDE 8 -->
-  <div class="slide">
-    <div class="image"><img src="https://drive.google.com/thumbnail?id=1M8eIyD0oY7ep2AqIazxyeJ_aAYy61Fj1"></div>
-    <p>
-      I don’t need perfect moments,<br>
-      as long as they are shared with you.
-    </p>
-  </div>
-
-  <!-- SLIDE 9 -->
-  <div class="slide">
-    <div class="image"><img src="https://drive.google.com/thumbnail?id=16TLqRkTn-sEVirgWkwcVQmBt6K40B0ox"></div>
-    <p>
-      If I had to choose again and again,<br>
-      in every lifetime,<br>
-      I would always choose you.
-    </p>
-  </div>
-
- 
-
-  <!-- SLIDE 12 -->
-  <div class="slide">
+  <div class="slide" data-text="Happy Valentine’s Day ❤️\nToday, tomorrow, and always…\nmy heart is yours.\n\n— Aastha 🌹">
     <div class="image"><img src="https://drive.google.com/thumbnail?id=1IMcar8MPJ6pQJcIAQ9ye9RnnxAol_-Ji"></div>
-    <h1>Happy Valentine’s Day ❤️</h1>
-    <p>
-      Today, tomorrow, and always…<br>
-      my heart is yours.<br><br>
-      — <strong>Aastha 🌹</strong>
-    </p>
+    <div class="typewriter"></div>
   </div>
 
-  <button onclick="nextSlide()">Next ❤️</button>
+  <button class="next" onclick="nextSlide()">Next ❤️</button>
 </div>
 
 <script>
-  let index = 0;
-  const slides = document.querySelectorAll('.slide');
+let index=0;
+const slides=document.querySelectorAll('.slide');
 
-  function nextSlide() {
-    slides[index].classList.remove('active');
-    index = (index + 1) % slides.length;
-    slides[index].classList.add('active');
+function typeText(slide){
+  const text=slide.getAttribute("data-text");
+  const box=slide.querySelector(".typewriter");
+  box.innerHTML="";
+  let i=0;
+  function typing(){
+    if(i<text.length){
+      box.innerHTML+=text.charAt(i);
+      let delay = text.charAt(i)==="\n" ? 600 : 90;
+      i++;
+      setTimeout(typing,delay);
+    }
   }
+  typing();
+}
+typeText(slides[0]);
+
+function nextSlide(){
+  slides[index].classList.remove("active");
+  index=(index+1)%slides.length;
+  slides[index].classList.add("active");
+  typeText(slides[index]);
+}
+
+/* 🎶 MUSIC TOGGLE */
+const music=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
+let playing=false;
+
+function toggleMusic(){
+  if(!playing){
+    music.play();
+    btn.innerText="⏸ Pause Music";
+    playing=true;
+  } else {
+    music.pause();
+    btn.innerText="🎶 Play Music";
+    playing=false;
+  }
+}
 </script>
 
 </body>
 </html>
+
+
 
 
